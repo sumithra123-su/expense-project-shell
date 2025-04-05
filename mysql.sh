@@ -34,13 +34,13 @@ echo "script started executing at: $(date)" | tee -a $LOG_FILE
 CHECK_ROOT
 
 dnf install mysql-server -y &>>$LOG_FILE 
-VALIDATE $? "Installing MYSQL server"
+VALIDATE $? "Installing mysql server"
 
 systemctl enable mysqld &>>$LOG_FILE
-VALIDATE $? "Enabled MYSQL server"
+VALIDATE $? "Enabled mysql server"
 
 systemctl start mysqld &>>$LOG_FILE
-VALIDATE $? "Started MYSQL server"
+VALIDATE $? "Started mysql server"
 
 mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOG_FILE
 VALIDATE $? "Settingup root password"
