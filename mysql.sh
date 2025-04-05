@@ -2,8 +2,8 @@
 
 LOGS_FOLDER="/var/log/expense"
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
-TIMESTAMP=$(date +%y-%m-%D-%H-%M-%S)
-LOG_FILE="$LOGS_FOLDER/$EXPENSE-$TIMESTAMP.log"
+TIMESTAMP=$(date +%y-%m-%d-%H-%M-%S)
+LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME-$TIMESTAMP.log"
 mkdir -p $LOGS_FOLDER
 
 
@@ -31,6 +31,7 @@ VALIDATE()
     fi
 }
 echo "script started executing at: $(date)" | tee -a $LOG_FILE
+
 CHECK_ROOT
 
 dnf install mysql-server -y &>>$LOG_FILE 
