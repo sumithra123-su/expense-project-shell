@@ -12,7 +12,7 @@ N="\e[0m"
 Y="\e[33m"
 
 CHECK_ROOT() {
-    if [ $USERID -ne 0]
+    if [ $USERID -ne 0 ]
     then
     echo -e "$R please run this script with root priveleges $N" | tee -a $LOG_FILE
     exit 1
@@ -20,7 +20,7 @@ CHECK_ROOT() {
 }
 
 VALIDATE() {
-    if [$1 -ne 0]
+    if [ $1 -ne 0 ]
     then
     echon-e "$2 is ...$R FAILED $N" | tee -a $LOG_FILE
     exit 1
@@ -31,13 +31,13 @@ echo "script started executing at: $(date)" | tee -a $LOG_FILE
 
 CHECK_ROOT
 
-dnf module disable nodejs -y 
+dnf module disable nodejs -y  &>>$LOG_FILE  
 VALIDATE $? "Disable default nodejs"
 
-dnf module enable nodejs:20 -y
+dnf module enable nodejs:20 -y  &>>$LOG_FILE
 VALIDATE $? "Enable nodejs:20"
 
-dnf install nodejs -y
+dnf install nodejs -y  &>>$LOG_FILE
 VALIDATE $? "Install nodejs"
 
 id expense
